@@ -1,0 +1,59 @@
+body {
+  color: white;
+  background: black;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#app {
+  font-size: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+}
+
+#app #text-shane {
+  width: 400px;
+  height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: red;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#app #text-shane span {
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+#app #text-shane div:empty {
+  width: 10px;
+}
+
+button {
+  margin-top: 20px;
+  height: 40px;
+}
