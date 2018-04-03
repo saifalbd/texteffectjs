@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+<div id="text-shane">Lorem ipsum dolor sit amet.</div>
+
+<button id="click-me" style="display: block;">click me</button>
+
+<button id="demo" style="transform: translateX(500px); transform: translateY(100px);" >amam</button>
+
+
+<script>
+
+'use strict';
+
+function isBelowThreshold(currentValue) {
+  return currentValue < 40;
+}
+
+function saifal(configar={basediv:'text-shane',speed:5, side:'l',format:'latter',role:true}){
+
+
+	return {
+
+
+	config:function(comeVal=''){
+		
+	//	return config;
+ try { 
+
+configar
+
+  
+       // if(configar.speed <= 7)  throw "is empty";
+       
+       
+    }
+    catch(err) {
+       // message.innerHTML = "Input " + err;
+        console.error(err)
+    }
+    finally {
+
+      switch(comeVal) {
+    case 'basediv':
+       		return document.getElementById(configar.basediv);
+        break;
+    case 'speed':
+	        if (configar.speed>=10) {
+					return 10;
+				}else {
+				return configar.speed;	
+			}	
+        break;
+    case 'role':
+        	return configar.role;
+        break; format
+    case 'side':
+        	return configar.side;
+        break;
+   	case 'format':
+        	return configar.format;
+        break;
+    case 'checkstyle':
+          return ['opacity','transfrom'];
+        break;
+    
+    default:
+        
+}
+ 
+
+    }
+
+
+	
+},// end config
+textStore : [],
+divStyle: [],
+
+getRandomValue:function(min, max){
+let  dibine =  Math.floor(Math.random() * (max - min) + min);
+let configval = this.config('speed');
+if (max>20) {
+ let getnumber = Math.floor(dibine/configval)
+ return getnumber*configval;	
+}else{
+	return dibine;
+}
+ 
+
+},// end getRandomValue
+makeElament:function(element,item){
+var makeEl = document.createElement("span");
+
+
+if (item.transform) {
+  makeEl.style.transform  = item.transform;
+}
+
+
+if (item.opacity) {
+
+  makeEl.style.opacity =item.opacity;
+}
+  
+
+
+
+var txt = document.createTextNode(element);
+//&nbsp; 
+
+makeEl.appendChild(txt);
+this.config('basediv').append(makeEl);	
+},// end textStore
+
+
+switchStyle:function(styleSeet){
+
+var sendProperty = new Object();
+
+var item = styleSeet;
+
+
+if (item.transform) {
+if (item.transform.rotat) {
+let propertyVal =  "translate("+item.transform.transX+"px ,"+item.transform.transY+"px) rotate("+item.transform.rotat+"deg)";
+
+sendProperty.transform= propertyVal;
+}else{
+let propertyVal = "translate("+item.transform.transX+"px ,"+item.transform.transY+"px)";
+
+sendProperty.transform= propertyVal;
+
+}
+
+} //end transfrom
+
+if (item.opacity) {
+
+let opacityVal = Math.floor(item.opacity.startval)/100;
+
+sendProperty.opacity= opacityVal;
+}
+
+
+
+
+
+return sendProperty;
+
+  
+
+
+
+
+
+
+
+},// end textStore
+textPusher:function(){
+
+let textShane = this.config('basediv');
+let textShanetrim = textShane.innerHTML.trim();
+let textShanetext = textShanetrim.replace(/  +/g, ' ');
+
+if (this.config('format')=='latter') {
+for (let a = 0; a < textShanetext.length; a++) {
+this.textStore.push(textShanetext.substr(a,1))
+}	
+}else if(this.config('format')=='word'){
+let textWord = textShanetext.split(" ");
+
+for (let a = 0; a < textWord.length; a++) {
+this.textStore.push(textWord[a])
+}
+}else{
+
+this.textStore.push(textShanetext)
+	
+}
+
+
+
+textShane.innerHTML ='';
+
+
+},//end textPusher
+setEffect:function(){
+var self = this;
+
+
+let checkStyleArray =this.config('checkstyle');
+
+
+function checkOpacity(valcheck){return  valcheck ==='opacity'; }
+function checkTransfrom(valcheck){return  valcheck ==='transfrom' }
+
+//self.config('checkstyle').find(checkTransfrom)
+
+
+
+
+
+this.textStore.forEach( function(element, index) {
+  let storeStyle = new Object();
+ let storeStyleList = new Object();
+if (checkStyleArray.find(checkTransfrom)) {
+
+let zeroOneX = self.getRandomValue(0, 2);
+let zeroOneY = self.getRandomValue(0, 2);
+let zeroOneR = self.getRandomValue(0, 2);
+
+let tanXvalRandom =  self.getRandomValue(50, 400);
+
+
+let tanYvalRandom = self.getRandomValue(50, 400);
+
+let rotevalRandom =self.getRandomValue(50, 60);
+
+
+
+
+
+/*
+jodi top left right boottm korte hoi tahole aro akta variable nite hobe let zeroOne moto
+ */
+
+//start switch
+
+
+
+ switch(self.config('side')) {
+
+    case 'top':       
+zeroOneX = 0;
+zeroOneY =0;
+zeroOneR =0;
+tanXvalRandom = 0; 
+
+        break;
+    case 'left':      
+zeroOneX = 0;
+zeroOneY =0;
+zeroOneR =0;
+tanYvalRandom = 0;
+
+        break;
+    case 'right':
+zeroOneX = 1;
+zeroOneY =0;
+zeroOneR =0;
+tanYvalRandom = 0;       	 	
+        break;
+     case 'bottom':
+    	
+  zeroOneX = 0;
+zeroOneY =1;
+zeroOneR =0;
+tanXvalRandom = 0;
+
+        break;
+     case 'both':
+        	
+        break;
+     case 'left-top':
+  zeroOneX = 0;
+zeroOneY =0;
+zeroOneR =0;
+
+        break;
+    case 'left-right':
+    zeroOneX = 1;
+zeroOneY =1;
+zeroOneR =0;
+        	
+        break;
+    case 'left-bottom':   	
+  zeroOneX = 0;
+zeroOneY =1;
+zeroOneR =0;
+
+        break;
+    case 'right-top':
+  zeroOneX = 1;
+zeroOneY =0;
+zeroOneR =0;
+        	
+        break;
+    case 'right-bottom':   
+  zeroOneX = 1;
+zeroOneY =1;
+zeroOneR =0; 
+
+        break;
+    case 'top-bottom':
+        	
+        break;
+    default:
+   
+
+        
+}
+
+//end start switch
+
+zeroOneX = (zeroOneX==0)?false :true;
+zeroOneY = (zeroOneY==0)?false :true;
+zeroOneR = (zeroOneR==0)?false :true;
+//must min valu 20 max unlimendd
+
+let tanXval =tanXvalRandom;
+ tanXval = (!zeroOneX) ? -tanXval : tanXval; //
+let tanYval = tanYvalRandom;
+tanYval =(!zeroOneY) ? -tanYval : tanYval; ///
+let roteval =rotevalRandom;
+roteval =(!zeroOneR) ? -roteval : roteval; //
+
+let purvala ={
+	transX:{transval:tanXval,rule:zeroOneX},
+    transY:{transval:tanYval,rule:zeroOneY},
+    rotat:{transval:roteval,rule:zeroOneR}
+       }
+
+
+
+
+if (!self.config('role')) {
+storeStyleList.transfrom = purvala;
+ let stylelist = {transX : 0, transY:0,rotat:0}
+
+storeStyle.transform=stylelist;
+
+}else{
+storeStyleList.transfrom = purvala;
+  let stylelist = {
+    transX : tanXval, transY:tanYval,rotat:roteval
+  }
+storeStyle.transform=stylelist;
+}
+
+
+
+ 
+
+} //end if transfrom
+
+if (checkStyleArray.find(checkOpacity)) {
+if (!self.config('role')) {
+
+let purvala ={startval:100,endval:0}
+storeStyleList.opacity = purvala;
+storeStyle.opacity = purvala;
+
+}else{
+
+let purvala = {startval:0,endval:100}
+storeStyleList.opacity = purvala;
+storeStyle.opacity = purvala;
+
+}
+
+
+ 
+
+}
+
+self.makeElament(element,self.switchStyle(storeStyle));
+
+self.divStyle.push(storeStyleList);
+
+});
+
+
+
+
+}, //end setEffect
+
+revercseRules:function(comeVal) {
+if (this.config('role')) {
+	if (comeVal) {
+return true;
+	}else{
+	return false;		
+	}
+	
+}else{
+if (comeVal) {
+return false;
+	}else{
+	return true;		
+	}
+}
+
+},
+//end setEffect
+doEffect:function(){
+
+//console.log(divStyle)
+const animation = this.config('basediv').querySelectorAll('span');
+var self =this;
+let transSpeed  = this.config('speed');
+
+function getEqual(argument) {
+	if (self.config('role')) {return 0;}else{
+		return  argument;}
+	}
+
+//console.log(self.divStyle)
+
+
+
+
+for (let i = 0; i < animation.length; i++) {
+
+
+if (animation[i].textContent ==' ') {
+animation[i].innerHTML = '&nbsp;';
+}
+
+
+if (self.divStyle[i].transfrom) {
+
+
+
+/*
+Start transfrom and if
+ */	
+if (self.config('role')){
+//start role true
+
+
+
+let tranSXval = self.divStyle[i].transfrom.transX;
+let  tranSYval = self.divStyle[i].transfrom.transY;
+let  tranSRval = self.divStyle[i].transfrom.rotat;
+
+
+let tranSXvalSet =tranSXval.transval;
+let  tranSYvalSet =tranSYval.transval;
+let  tranSRvalSet =tranSRval.transval;
+
+  
+let functionName = 'd'+ Math.floor(Math.random()*1000001);
+ window[functionName]=   setInterval(function (){
+if (tranSXvalSet==0 && tranSYvalSet==0 && tranSRvalSet==0) {
+
+clearInterval(window[functionName]);
+
+}else{
+if (!tranSXval.rule) {
+  tranSXvalSet+=transSpeed;
+  tranSXvalSet = (tranSXvalSet==-transSpeed||tranSXvalSet==transSpeed)?0:tranSXvalSet;
+}else{
+tranSXvalSet-=transSpeed;
+tranSXvalSet = (tranSXvalSet==-transSpeed||tranSXvalSet==transSpeed)?0:tranSXvalSet;
+}
+if (!tranSYval.rule) {
+  tranSYvalSet+=transSpeed;
+  tranSYvalSet = (tranSYvalSet==-transSpeed||tranSYvalSet==transSpeed)?0:tranSYvalSet;
+}else{
+tranSYvalSet-=transSpeed;
+tranSYvalSet = (tranSYvalSet==-transSpeed||tranSYvalSet==transSpeed)?0:tranSYvalSet;
+}
+if (!tranSRval.rule) {
+  tranSRvalSet+=transSpeed;
+  tranSRvalSet = (tranSRvalSet==-transSpeed||tranSRvalSet==transSpeed)?0:tranSRvalSet;
+
+}else{
+tranSRvalSet-=transSpeed;
+tranSRvalSet = (tranSRvalSet==-transSpeed||tranSRvalSet==transSpeed)?0:tranSRvalSet;
+}
+
+}
+
+var getStyle = self.switchStyle(
+  {transform:{transX :tranSXvalSet, transY :tranSYvalSet,rotat:tranSRvalSet}})
+
+
+animation[i].style.transform = getStyle.transform;
+
+
+
+}, 10);
+
+
+
+//end true
+}else if (!self.config('role')) {
+  
+let tranSXval = self.divStyle[i].transfrom.transX;
+let  tranSYval = self.divStyle[i].transfrom.transY;
+let  tranSRval = self.divStyle[i].transfrom.rotat;
+
+let tranSXvalSet =0;
+let  tranSYvalSet =0;
+let  tranSRvalSet =0;
+
+
+let functionName = 'd'+ Math.floor(Math.random()*1000001);
+ window[functionName]=   setInterval(function (){
+
+if (tranSXvalSet==tranSXval.transval && tranSYvalSet == tranSYval.transval && tranSRvalSet == tranSRval.transval) {
+
+clearInterval(window[functionName]);
+
+}else{
+if (!tranSXval.rule) {
+tranSXvalSet-=transSpeed;
+tranSXvalSet = (tranSXvalSet== -transSpeed+tranSXval.transval|| tranSXvalSet== transSpeed+tranSXval.transval) ?tranSXval.transval:tranSXvalSet; 
+
+}else{
+
+tranSXvalSet+=transSpeed;
+tranSXvalSet = (tranSXvalSet==-transSpeed+tranSXval.transval|| tranSXvalSet==transSpeed+tranSXval.transval)?tranSXval.transval:tranSXvalSet ; 
+
+}
+
+
+if (!tranSYval.rule) {
+tranSYvalSet-=transSpeed;
+tranSYvalSet =(tranSYvalSet==-transSpeed+tranSYval.transval||tranSYvalSet==transSpeed+tranSYval.transval)?tranSYval.transval :tranSYvalSet; 
+}else{
+tranSYvalSet+=transSpeed;
+tranSYvalSet =(tranSYvalSet==-transSpeed+tranSYval.transval||tranSYvalSet==transSpeed+tranSYval.transval)?tranSYval.transval :tranSYvalSet; 
+}
+
+if (!tranSRval.rule) {
+tranSRvalSet-=transSpeed;
+tranSRvalSet =(tranSRvalSet==-transSpeed+tranSRval.transval||tranSRvalSet==transSpeed+tranSRval.transval)?tranSRval.transval :tranSRvalSet; 
+}else{
+
+tranSRvalSet+=transSpeed;
+tranSRvalSet =(tranSRvalSet==-transSpeed+tranSRval.transval||tranSRvalSet==transSpeed+tranSRval.transval)?tranSRval.transval :tranSRvalSet; 
+}
+
+
+}
+
+
+var getStyle = self.switchStyle({transform:{transX :tranSXvalSet, transY :tranSYvalSet,rotat:tranSRvalSet}})
+
+
+animation[i].style.transform = getStyle.transform;
+	
+
+
+
+
+}, 10);
+
+
+}//end if
+
+/*
+endtransfrom and if
+ */ 
+
+}//end if(this.divStyle[i][0].transfrom))
+if (self.divStyle[i].opacity) {
+  let startval =self.divStyle[i].opacity.startval;
+  let endval =self.divStyle[i].opacity.endval;
+let functionOpacity = 'd'+ Math.floor(Math.random()*1000001);
+ window[functionOpacity]=   setInterval(function (){
+if (startval==endval) {
+clearInterval(window[functionOpacity]);
+}else{
+  if (self.config('role')) {
+    startval+=transSpeed;  
+  }else{
+    startval-=transSpeed;  
+  }
+
+console.log(startval) 
+}
+
+var getOpacity = self.switchStyle({opacity:{startval:startval}})
+
+animation[i].style.opacity = getOpacity.opacity;
+
+ },10);
+
+ 
+}
+
+
+}; //end foreach
+
+
+}, //end doEffect
+
+} //end return
+}//end saifal
+
+ 
+  
+var saifal = new saifal;
+
+saifal.textPusher();
+saifal.setEffect();
+saifal.doEffect();
+
+  
+	
+</script>
+
+</div>
+	
+</body>
+</html>
